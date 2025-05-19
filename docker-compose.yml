@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  ollama:
+    build:
+      context: .                # Usa o Dockerfile da pasta atual
+      dockerfile: Dockerfile   # (opcional se o nome for 'Dockerfile')
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+    # security_opt: # Normalmente não é necessário para Ollama padrão, a menos que seu Dockerfile precise
+    #   - seccomp:unconfined
+    # tty: true # tty é mais para interação direta, para um serviço em background como Ollama, geralmente não é essencial
+    networks: # Adicionar uma rede para comunicação clara
+      - ollama-net
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "3000:8080"
+    environment:
+      # CORREÇÃO AQUI: Use OLLAMA_BASE_URL para o Open WebUI
+      - OLLAMA_BASE_URL=http://ollama:11434
+      # - USE_OLLAMA_DOCKER=true # Esta variável não é padrão do Open WebUI e provavelmente não é necessária.
+                                # Se o seu Dockerfile do Ollama faz algo específico com ela, mantenha,
+                                # caso contrário, pode ser removida para Open WebUI.
+    depends_on:
+      - ollama
+    volumes:
+      - openwebui-data:/app/backend/data
+    restart: unless-stopped
+    networks: # Adicionar à mesma rede
+      - ollama-net
+
+volumes:
+  ollama-data:
+  openwebui-data:
+
+networks: # Definir a rede
+  ollama-net:
+    driver: bridge
