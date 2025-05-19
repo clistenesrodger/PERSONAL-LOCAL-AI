@@ -13,7 +13,20 @@ Para iniciar este projeto, siga estas instruções:
    Este comando irá construir quaisquer imagens Docker necessárias e iniciar as contêineres em segundo plano.
 
 Após executar este comando, você pode acessar a interface web do projeto:
-1. Abra um navegador de internet.
-2. Navegue até: http://localhost:3000
+http://localhost:3000
+
+Para finalizar e limpar todos os contêineres que foram iniciados com o Docker Compose, você pode usar o seguinte comando no terminal:
+
+```bash
+docker-compose down
+```
+
+Este comando apagará qualquer contêiner, rede ou volume associado ao `docker-compose.yml` em execução. Se quiser também remover as imagens locais usadas pelos seus contêineres (sem limpar os volumes), pode adicionar a opção `--rmi all`, como mostrado abaixo:
+
+```bash
+docker-compose down --rmi all
+```
+
+Este comando ajudará você manter seu sistema limpo sem precisar cuidar manualmente das imagens desnecessárias.
 
 A partir desse endereço, você deve ter acesso à aplicação ou serviço que está sendo executado dentro dos contêineres iniciados pelo docker-compose.
