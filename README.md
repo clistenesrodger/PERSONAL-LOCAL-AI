@@ -15,6 +15,8 @@ Para iniciar este projeto, siga estas instruções:
 Após executar este comando, você pode acessar a interface web do projeto:
 http://localhost:3000
 
+A partir desse endereço, você deve ter acesso à aplicação ou serviço que está sendo executado dentro dos contêineres iniciados pelo docker-compose.
+
 Para finalizar e limpar todos os contêineres que foram iniciados com o Docker Compose, você pode usar o seguinte comando no terminal:
 
 ```bash
@@ -29,4 +31,3 @@ docker-compose down --rmi all
 
 Este comando ajudará você manter seu sistema limpo sem precisar cuidar manualmente das imagens desnecessárias.
 
-A partir desse endereço, você deve ter acesso à aplicação ou serviço que está sendo executado dentro dos contêineres iniciados pelo docker-compose.
