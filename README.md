@@ -1,5 +1,5 @@
 
-# Documentação Markdown de Execução do Projeto
+# Documentação Execução do Projeto
 
 Para iniciar este projeto, siga estas instruções:
 1. Abra um terminal no computador onde o arquivo `docker-compose.yml` está localizado.
